@@ -115,7 +115,8 @@ module RiceCooker
       # Extract the fields for each type from the fields parameters
       if filtering_param.is_a?(Hash)
         filtering_param.each do |field, value|
-          resource_fields = value.split(',') unless value.nil? || value.empty?
+          value_str = value.to_s
+          resource_fields = value_str.split(',') unless value_str.nil? || value_str.empty?
           fields[field.to_sym] = resource_fields
         end
       else
@@ -207,7 +208,8 @@ module RiceCooker
       # Extract the fields for each type from the fields parameters
       if searching_param.is_a?(Hash)
         searching_param.each do |field, value|
-          resource_fields = value.split(',') unless value.nil? || value.empty?
+          value_str = value.to_s
+          resource_fields = value_str.split(',') unless value_str.nil? || value_str.empty?
           fields[field.to_sym] = resource_fields
         end
       else
@@ -302,7 +304,8 @@ module RiceCooker
       # Extract the fields for each type from the fields parameters
       if ranged_param.is_a?(Hash)
         ranged_param.each do |field, value|
-          resource_fields = value.split(',') unless value.nil? || value.empty?
+          value_str = value.to_s
+          resource_fields = value_str.split(',') unless value_str.nil? || value_str.empty?
           raise InvalidRangeException, "Invalid range format for #{ranged_param}. Too many arguments for filter (#{resource_fields})." if resource_fields.length > 2
           raise InvalidRangeException, "Invalid range format for #{ranged_param}. Begin and end must be separated by a comma (,)." if resource_fields.length < 2
           fields[field.to_sym] = resource_fields
